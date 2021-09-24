@@ -1,4 +1,4 @@
 # test-actions
 
-github actionsのれんしゅう。
-masterにpushすると、pyinstallerが実行されて、バイナリファイルが作られる。
+github actionsのれんしゅう。\
+masterにpushすると、pyinstallerが動いて実行ファイルが作られる。
