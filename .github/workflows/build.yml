@@ -1,0 +1,30 @@
+name: build
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: build
+    runs-on: macos-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: setup pipenv
+        run: |
+          python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install
+      - name: build
+        run: |
+          pipenv run pyinstaller main.spec --onefile
+      - name: upload
+        uses: actions/upload-artifact@v1
+        with:
+          name: bin_${{ github.sha }}
+          path: dist/main
